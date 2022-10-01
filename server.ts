@@ -18,7 +18,7 @@ async function createServer() {
 
   app
     .use(vite.middlewares)
-    .use(/.*/, async (req, res, next) => {
+    .use(/.*/, async(req, res, next) => {
       const url = req.originalUrl
 
       try {
@@ -41,7 +41,9 @@ async function createServer() {
         next(e)
       }
     })
-    .listen(3193)
+    .listen(3193, () => {
+      console.log('Server is on: http://localhost:3193')
+    })
 }
 
 createServer()
