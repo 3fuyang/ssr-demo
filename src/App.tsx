@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import reactLogo from './assets/react.svg'
+import routes from '~react-pages'
+import { useRoutes } from 'react-router-dom'
 import './App.css'
 
 function App() {
@@ -20,13 +22,15 @@ function App() {
         <button type="button" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Suspense fallback={<p>Loading...</p>}>
+        <div className="router-view">
+          {useRoutes(routes)}
+        </div>
+      </Suspense>
     </div>
   )
 }
